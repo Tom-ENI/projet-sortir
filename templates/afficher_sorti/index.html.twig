@@ -9,12 +9,48 @@
 </style>
 
 <div class="container-fluid">
-
 <div class="row">
     <h4 class="offset-10 col-2">Date du jour : 19/07/2018    
 </div>
-
 <div class="row">
     <h4 class="offset-10 col-2">Participant : Jeanine L.    
+</div>
+<div class="row" style="margin-top:15px;">
+    <h5 class="col-12">Filtrer les sorties</h5>
+</div>
+
+<div class="row">
+    <div class="col-5">
+        <div class="row">
+            <div class="col-3">Site : </div>
+            <select class="offset-1 col-8">
+                <option>Saint Herblain</option>
+                <option>Niort</option>
+            </select>
+        </div>
+        <div class="row" style="margin-top:15px;">
+            <div class="col-4">Le nom de la sortie contient :</div>
+            <input class="col-8" type="text" name="NomSortie"/>
+        </div>
+        <div class="row" style="margin-top:15px">
+            <div class="col-4">
+                Entre
+            </div>
+            <input type="text" class="col-3"/>
+            <div class="col-2 text-center"> et </div>
+            <input type="text" class="col-3"/>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="row">
+            <div class="col-11 offset-1" ><input type="checkbox"/> Sorties dont je suis l'organisateur/trice </div>
+            <div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/> Sorties auxquelles je suis inscrit/e </div>
+            <div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/> Sorties auxquelles je ne suis pas inscrit/e </div>
+            <div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/> Sorties passées </div>                                    
+        </div>
+    </div>
+    <div class="col-2 offset-1" style="margin-top:100px;">
+        <input type="submit" value="Rechercher" class="col-12"/>
+    </div>
 </div>
 {% endblock %}
