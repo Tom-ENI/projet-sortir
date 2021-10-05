@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <div class="offset-md-5">
+        <ul>
+            Prenom: {{ data.prenom }}
+        </ul>
+
+        Nom: {{ data.nom }}
+        Telephone: {{ data.telephone }}
+        Email: {{ data.mail }}
+    </div>
+
+    <div class="text-center"><h1>{{ data.prenom }}</h1></div>
+{% endblock %}
