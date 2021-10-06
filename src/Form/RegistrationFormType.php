@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -20,9 +22,9 @@ class RegistrationFormType extends AbstractType
             ->add('pseudo')
             ->add('nom')
             ->add('prenom')
-            ->add('telephone')
+            ->add('telephone', NumberType::class)
             ->add('mail')
-            ->add('sites_no_site')
+            ->add('sites_no_site' , IntegerType::class)
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
