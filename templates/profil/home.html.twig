@@ -3,15 +3,31 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
+    <div class="text-center"><h1>{{ data.pseudo }}</h1></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
     <div class="offset-md-5">
         <ul>
             Prenom: {{ data.prenom }}
         </ul>
-
-        Nom: {{ data.nom }}
-        Telephone: {{ data.telephone }}
-        Email: {{ data.mail }}
+        <ul>
+            Nom: {{ data.nom }}
+        </ul>
+        <ul>
+            Telephone: {{ data.telephone }}
+        </ul>
+        <ul>
+            Email: {{ data.mail }}
+        </ul>
+    </div>
+    <div class="offset-md-5">
+        <a type="button" class="btn btn-primary" href="http://localhost/projet-sortir/public/home">Retour</a>
+        <a type="button" class="btn btn-primary" href="http://localhost/projet-sortir/public/profil/edit">Modifier</a>
     </div>
 
-    <div class="text-center"><h1>{{ data.prenom }}</h1></div>
 {% endblock %}

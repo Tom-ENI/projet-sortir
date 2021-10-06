@@ -22,10 +22,7 @@ class RegistrationFormType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('mail')
-            ->add('administrateur')
-            ->add('actif')
             ->add('sites_no_site')
-            ->add('no_participant')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -58,6 +55,10 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Participants::class,
+            //'sites_no_site' => '1',
+            //'actif' => '1',
+            //'administrateur' => '1',
+            //'no_participant' => 1,
         ]);
     }
 }

@@ -5,9 +5,15 @@
 {% block body %}
 <div class="text-center"><h1>Profil</h1></div>
 
-<div class="offset-md-5">
-    {{ form(form) }}
-    <a type="button" class="btn btn-primary" href="http://localhost/projet-sortir/public/profil">Retour</a>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
-</div>
+    {{ form_start(form) }}
+    {{ form_row(form.pseudo) }}
+    {{ form_row(form.prenom)}}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.telephone) }}
+    {{ form_row(form.mail) }}
+    {{ form_row(form.mot_de_passe) }}
+    {{ form_row(form.sites_no_site) }}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
 {% endblock %}
