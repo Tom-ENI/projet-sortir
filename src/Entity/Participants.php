@@ -89,6 +89,8 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $sitesNoSite;
 
+    private $roles;
+
     public function getNoParticipant(): ?int
     {
         return $this->noParticipant;
@@ -154,7 +156,7 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getMotDePasse(): ?string
+    /*public function getMotDePasse(): ?string
     {
         return $this->motDePasse;
     }
@@ -164,7 +166,7 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
         $this->motDePasse = $motDePasse;
 
         return $this;
-    }
+    }*/
 
     public function getAdministrateur(): ?bool
     {
@@ -249,7 +251,7 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return $this->motDePasse;
     }
 
     public function setPassword(string $password): self
