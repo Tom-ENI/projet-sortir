@@ -78,23 +78,21 @@ class Sorties
     private $urlphoto;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="organisateur", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Participants::class , inversedBy="sorties")
+     * @ORM\JoinColumn(name="organisateur" , referencedColumnName="no_participant")
      */
     private $organisateur;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="lieux_no_lieu", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Lieux::class , inversedBy="sorties")
+     * @ORM\JoinColumn(name="lieux_no_lieu" , referencedColumnName="no_lieu")
      */
     private $lieuxNoLieu;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="etats_no_etat", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Etats::class, inversedBy="sorties")
+     * @ORM\JoinColumn(name="etats_no_etat" , referencedColumnName="no_etat")
+     * 
      */
     private $etatsNoEtat;
 
@@ -199,36 +197,36 @@ class Sorties
         return $this;
     }
 
-    public function getOrganisateur(): ?int
+    public function getOrganisateur(): ?Participants
     {
         return $this->organisateur;
     }
 
-    public function setOrganisateur(int $organisateur): self
+    public function setOrganisateur(?Participants $organisateur): self
     {
         $this->organisateur = $organisateur;
 
         return $this;
     }
 
-    public function getLieuxNoLieu(): ?int
+    public function getLieuxNoLieu(): ?Lieux
     {
         return $this->lieuxNoLieu;
     }
 
-    public function setLieuxNoLieu(int $lieuxNoLieu): self
+    public function setLieuxNoLieu(?Lieux $lieuxNoLieu): self
     {
         $this->lieuxNoLieu = $lieuxNoLieu;
 
         return $this;
     }
 
-    public function getEtatsNoEtat(): ?int
+    public function getEtatsNoEtat(): ?Etats
     {
         return $this->etatsNoEtat;
     }
 
-    public function setEtatsNoEtat(int $etatsNoEtat): self
+    public function setEtatsNoEtat(?Etats $etatsNoEtat): self
     {
         $this->etatsNoEtat = $etatsNoEtat;
 

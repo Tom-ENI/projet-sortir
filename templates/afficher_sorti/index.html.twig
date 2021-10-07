@@ -9,7 +9,7 @@
 			<h4 class="offset-10 col-2">Date du jour : 19/07/2018
 			</div>
 			<div class="row">
-				<h4 class="offset-10 col-2">Participant : Jeanine L. {{ participant.nom}}
+				<h4 class="offset-10 col-2">Participant :  {{ participant.nom}} {{participant.prenom}}
 				</div>
 				<div class="row" style="margin-top:15px;">
 					<h5 class="col-12">Filtrer les sorties</h5>
@@ -20,8 +20,9 @@
 							<div class="col-3">Site :
 							</div>
 							<select class="offset-1 col-8">
-								<option>Saint Herblain</option>
-								<option>Niort</option>
+						        {% for site in sites %}
+									<option>{{site.nomsite}}</option>
+        						{% endfor %}
 							</select>
 						</div>
 						<div class="row" style="margin-top:15px;">
@@ -113,6 +114,34 @@
 				Afficher
 			</div>
         </div>
+        {% for sortie in sorties %}
+        <div class="row">
+			<div class="col-2">
+				{{sortie.nom}}
+			</div>
+			<div class="col-2">
+				{{sortie.datedebut | date('d-m-Y')}}
+			</div>
+			<div class="col-1">
+				{{sortie.datecloture | date('d-m-Y')}}
+			</div>
+			<div class="col-1">
+				8/{{sortie.nbinscriptionsmax}}
+			</div>
+			<div class="col-1">
+				{{sortie.etatsnoetat.libelle}}
+			</div>
+			<div class="col-1">
+				X
+			</div>
+			<div class="col-2">
+				{{sortie.organisateur.nom}}  {{sortie.organisateur.prenom}}
+			</div>
+			<div class="col-2">
+				Afficher
+			</div>
+        </div>            
+        {% endfor %}
         <div class="row" style="margin-top:20px;">
             <input type="submit" value="Créer une sortie" class="col-1"/>
         </div>
