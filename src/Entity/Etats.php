@@ -33,6 +33,11 @@ class Etats
         return $this->noEtat;
     }
 
+    /**
+     * @ORM\OneToMany(targetEntity=Sorties::class, mappedBy="etat")
+     */
+    private $sorties;    
+
     public function getLibelle(): ?string
     {
         return $this->libelle;
