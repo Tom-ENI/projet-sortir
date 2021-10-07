@@ -156,7 +156,7 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /*public function getMotDePasse(): ?string
+    public function getMotDePasse(): ?string
     {
         return $this->motDePasse;
     }
@@ -166,7 +166,7 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
         $this->motDePasse = $motDePasse;
 
         return $this;
-    }*/
+    }
 
     public function getAdministrateur(): ?bool
     {
