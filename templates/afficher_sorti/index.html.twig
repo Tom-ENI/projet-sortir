@@ -9,57 +9,61 @@
 			<h4 class="offset-10 col-2">Date du jour : 19/07/2018
 			</div>
 			<div class="row">
-				<h4 class="offset-10 col-2">Participant :  {{ participant.nom}} {{participant.prenom}}
+				<h4 class="offset-10 col-2">Participant :
+					{{ participant.nom}}
+					{{participant.prenom}}
 				</div>
 				<div class="row" style="margin-top:15px;">
 					<h5 class="col-12">Filtrer les sorties</h5>
 				</div>
-				<div class="row">
-					<div class="col-5">
-						<div class="row">
-							<div class="col-3">Site :
+				<form method="POST" action="#">
+					<div class="row">
+						<div class="col-5">
+							<div class="row">
+								<div class="col-3">Site :
+								</div>
+								<select class="offset-1 col-8">
+									{% for site in sites %}
+										<option>{{site.nomsite}}</option>
+									{% endfor %}
+								</select>
 							</div>
-							<select class="offset-1 col-8">
-						        {% for site in sites %}
-									<option>{{site.nomsite}}</option>
-        						{% endfor %}
-							</select>
+							<div class="row" style="margin-top:15px;">
+								<div class="col-4">Le nom de la sortie contient :</div>
+								<input class="col-8" type="text" name="nom"/>
+							</div>
+							<div class="row" style="margin-top:15px">
+								<div class="col-4">
+									Entre
+								</div>
+								<input type="text" class="col-3"/>
+								<div class="col-2 text-center">
+									et
+								</div>
+								<input type="text" class="col-3"/>
+							</div>
 						</div>
-						<div class="row" style="margin-top:15px;">
-							<div class="col-4">Le nom de la sortie contient :</div>
-							<input class="col-8" type="text" name="NomSortie"/>
+						<div class="col-3">
+							<div class="row">
+								<div class="col-11 offset-1"><input type="checkbox"/>
+									Sorties dont je suis l'organisateur/trice
+								</div>
+								<div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/>
+									Sorties auxquelles je suis inscrit/e
+								</div>
+								<div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/>
+									Sorties auxquelles je ne suis pas inscrit/e
+								</div>
+								<div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/>
+									Sorties passées
+								</div>
+							</div>
 						</div>
-						<div class="row" style="margin-top:15px">
-							<div class="col-4">
-								Entre
-							</div>
-							<input type="text" class="col-3"/>
-							<div class="col-2 text-center">
-								et
-							</div>
-							<input type="text" class="col-3"/>
+						<div class="col-2 offset-1" style="margin-top:100px;">
+							<input type="submit" value="Rechercher" class="col-12"/>
 						</div>
 					</div>
-					<div class="col-3">
-						<div class="row">
-							<div class="col-11 offset-1"><input type="checkbox"/>
-								Sorties dont je suis l'organisateur/trice
-							</div>
-							<div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/>
-								Sorties auxquelles je suis inscrit/e
-							</div>
-							<div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/>
-								Sorties auxquelles je ne suis pas inscrit/e
-							</div>
-							<div class="col-11 offset-1" style="margin-top:15px"><input type="checkbox"/>
-								Sorties passées
-							</div>
-						</div>
-					</div>
-					<div class="col-2 offset-1" style="margin-top:100px;">
-						<input type="submit" value="Rechercher" class="col-12"/>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 		<div class="row font-weight-bold" style="margin-top:20px;">
@@ -88,7 +92,7 @@
 				Actions
 			</div>
 		</div>
-        <div class="row">
+		<div class="row">
 			<div class="col-2">
 				Philo
 			</div>
@@ -113,38 +117,38 @@
 			<div class="col-2">
 				Afficher
 			</div>
-        </div>
-        {% for sortie in sorties %}
-        <div class="row">
-			<div class="col-2">
-				{{sortie.nom}}
+		</div>
+		{% for sortie in sorties %}
+			<div class="row">
+				<div class="col-2">
+					{{sortie.nom}}
+				</div>
+				<div class="col-2">
+					{{sortie.datedebut | date('d-m-Y')}}
+				</div>
+				<div class="col-1">
+					{{sortie.datecloture | date('d-m-Y')}}
+				</div>
+				<div class="col-1">
+					8/{{sortie.nbinscriptionsmax}}
+				</div>
+				<div class="col-1">
+					{{sortie.etatsnoetat.libelle}}
+				</div>
+				<div class="col-1">
+					X
+				</div>
+				<div class="col-2">
+					{{sortie.organisateur.nom}}
+					{{sortie.organisateur.prenom}}
+				</div>
+				<div class="col-2">
+					Afficher
+				</div>
 			</div>
-			<div class="col-2">
-				{{sortie.datedebut | date('d-m-Y')}}
-			</div>
-			<div class="col-1">
-				{{sortie.datecloture | date('d-m-Y')}}
-			</div>
-			<div class="col-1">
-				8/{{sortie.nbinscriptionsmax}}
-			</div>
-			<div class="col-1">
-				{{sortie.etatsnoetat.libelle}}
-			</div>
-			<div class="col-1">
-				X
-			</div>
-			<div class="col-2">
-				{{sortie.organisateur.nom}}  {{sortie.organisateur.prenom}}
-			</div>
-			<div class="col-2">
-				Afficher
-			</div>
-        </div>            
-        {% endfor %}
-        <div class="row" style="margin-top:20px;">
-            <input type="submit" value="Créer une sortie" class="col-1"/>
-        </div>
+		{% endfor %}
+		<div class="row" style="margin-top:20px;">
+			<input type="submit" value="Créer une sortie" class="col-1"/>
+		</div>
 	</div>
 {% endblock %}
-
