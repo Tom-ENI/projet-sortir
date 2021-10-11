@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AfficherSortiController extends AbstractController
 {
     /**
-     * @Route("/sortie", name="afficher_sorti")
+     * @Route("/sorti", name="afficher_sorti")
      */
     public function index(Request $request): Response
     {
