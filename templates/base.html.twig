@@ -19,13 +19,16 @@
         <h0>Sortie.com</h0><a href="{{ path('afficher_sorti') }}"><button>Accueil</button></a><button>Mon profil</button><a href="{{ path('app_logout') }}"><button>Se déconnecter</button></a>
         {% block body %}
         {% endblock %}
-    {% elseif app.request.attributes.get('_route') != 'app_login' %}
+    {% elseif (app.request.attributes.get('_route') != 'app_login') and (app.request.attributes.get('_route') != 'app_register') %}
     {% block javascriptss %}
         <script> window.location.href = "/login";</script>
     {% endblock %}
     {% endif %}
     {% if app.request.attributes.get('_route') == 'app_login' %}
         {% block conn %}
+        {% endblock %}
+    {% elseif app.request.attributes.get('_route') == 'app_register' %}
+        {% block register %}
         {% endblock %}
     {% endif %}
     </body>
