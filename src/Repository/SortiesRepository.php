@@ -47,4 +47,22 @@ class SortiesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function findByNom(String $nom): array
+    {
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('s')
+            ->where('s.nom LIKE :nom')
+            ->setParameter('nom', '%'. $nom .'%');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+
+        // to get just one result:
+        // $product = $query->setMaxResults(1)->getOneOrNullResult();
+    }
+
 }

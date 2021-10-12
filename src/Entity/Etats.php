@@ -31,12 +31,7 @@ class Etats
     public function getNoEtat(): ?int
     {
         return $this->noEtat;
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity=Sorties::class, mappedBy="etat")
-     */
-    private $sorties;    
+    } 
 
     public function getLibelle(): ?string
     {
@@ -50,5 +45,6 @@ class Etats
         return $this;
     }
 
+    
 
 }

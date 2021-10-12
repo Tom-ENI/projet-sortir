@@ -71,19 +71,19 @@ class Sorties
     private $urlphoto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Participants::class , inversedBy="sorties")
+     * @ORM\ManyToOne(targetEntity=Participants::class)
      * @ORM\JoinColumn(name="organisateur" , referencedColumnName="no_participant")
      */
     private $organisateur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Lieux::class , inversedBy="sorties")
+     * @ORM\ManyToOne(targetEntity=Lieux::class)
      * @ORM\JoinColumn(name="lieux_no_lieu" , referencedColumnName="no_lieu")
      */
     private $lieuxNoLieu;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Etats::class, inversedBy="sorties")
+     * @ORM\ManyToOne(targetEntity=Etats::class)
      * @ORM\JoinColumn(name="etats_no_etat" , referencedColumnName="no_etat")
      * 
      */
