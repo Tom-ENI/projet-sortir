@@ -20,7 +20,9 @@
         {% block body %}
         {% endblock %}
     {% elseif app.request.attributes.get('_route') != 'app_login' %}
-    {{ render(path('app_login')) }}
+    {% block javascriptss %}
+        <script> window.location.href = "/login";</script>
+    {% endblock %}
     {% endif %}
     {% if app.request.attributes.get('_route') == 'app_login' %}
         {% block conn %}
