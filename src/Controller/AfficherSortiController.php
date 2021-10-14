@@ -17,40 +17,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class AfficherSortiController extends AbstractController
 {
     /**
+     * @Route("/", name="index")
+     */
+    public function index(): Response
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute("afficher_sorti");
+        } else {
+            return $this->redirectToRoute("app_login");
+        }
+    }
+
+    /**
      * @Route("/sorti", name="afficher_sorti")
      */
-    public function index(Request $request): Response
+    public function afficher_sorti(Request $request, SortiesRepository $sr): Response
     {
         $nom = $request->request->get('nom');
 
         if($request->isMethod('POST')){
+            $sorties = $sr->findByNom($nom);    
+        } else {
             $sorties = $this->getDoctrine()
             ->getRepository(Sorties::class)
-            ->findByNom($nom);    
-            
-            $participant = $this->getDoctrine()
-            ->getRepository(Participants::class)
-            ->find(1);         
-            
-            $sites = $this->getDoctrine()
-            ->getRepository(Sites::class)
-            ->findAll();            
-
-        } else{
-
-        $participant = $this->getDoctrine()
-            ->getRepository(Participants::class)
-            ->find(1);
-
-        $sorties = $this->getDoctrine()
-            ->getRepository(Sorties::class)
-            ->findAll();
-
-        $sites = $this->getDoctrine()
-            ->getRepository(Sites::class)
             ->findAll();
         }
 
+        $participant = $this->getDoctrine()
+            ->getRepository(Participants::class)
+            ->find($this->getUser()->getNoParticipant());
+
+        
+        $sites = $this->getDoctrine()
+            ->getRepository(Sites::class)
+            ->findAll();
 
 
         return $this->render('afficher_sorti/index.html.twig', [
