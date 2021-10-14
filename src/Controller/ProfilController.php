@@ -16,9 +16,7 @@ class ProfilController extends AbstractController
      */
     public function home(ParticipantsRepository $repo): Response
     {
-        //get id user in session
-        $userId = 1;
-        $data = $repo->find($userId);
+        $data = $repo->find($this->getUser()->getNoParticipant());
         return $this->render('profil/home.html.twig', [
             'data' => $data
         ]);
@@ -29,8 +27,7 @@ class ProfilController extends AbstractController
      */
     public function edit(ParticipantsRepository $repo, Request $request): Response
     {
-        $userId = 1;
-        $data = $repo->find($userId);
+        $data = $repo->find($this->getUser()->getNoParticipant());
 
         $form = $this->createForm(ProfilType::class, $data);
         $form->handleRequest($request);
@@ -44,8 +41,8 @@ class ProfilController extends AbstractController
             return $this->redirectToRoute('profil');
         }
 
-        return $this->renderForm('profil/edit.html.twig', [
-             'form' => $form,
+        return $this->render('profil/edit.html.twig', [
+             'form' => $form->createView(),
              'data' => $data,
         ]);
     }
