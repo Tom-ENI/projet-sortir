@@ -49,13 +49,20 @@ class SortiesRepository extends ServiceEntityRepository
     */
 
 
-    public function findByNom(String $nom): array
+    public function findByNom(String $nom, String $date1, String $date2, int $site): array
     {
         // automatically knows to select Products
         // the "p" is an alias you'll use in the rest of the query
         $qb = $this->createQueryBuilder('s')
+            ->innerJoin('s.organisateur' , 'o')
             ->where('s.nom LIKE :nom')
-            ->setParameter('nom', '%'. $nom .'%');
+            ->andWhere('s.datedebut BETWEEN :date1 AND :date2')
+            ->andWhere('o.sitesNoSite = :site')
+            ->setParameter('nom', '%'. $nom .'%')
+            ->setParameter('date1', $date1)
+            ->setParameter('date2', $date2)
+            ->setParameter('site', $site);
+
 
         $query = $qb->getQuery();
 
