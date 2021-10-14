@@ -107,13 +107,17 @@
 					{{sortie.datecloture | date('d/m/Y')}}
 				</div>
 				<div class="col-1">
-					8/{{sortie.nbinscriptionsmax}}
+					{{sortie.inscriptions.count}}/{{sortie.nbinscriptionsmax}}
 				</div>
 				<div class="col-1">
 					{{sortie.etat.getLibelle()}}
 				</div>
 				<div class="col-1">
-					X
+					{% for ins in sortie.inscriptions %}
+						{% if app.user.Id == ins.getParticipants().Id  %}
+							X
+						{% endif %}
+					{% endfor %}
 				</div>
 				<div class="col-2">
 					{{sortie.organisateur.nom}}

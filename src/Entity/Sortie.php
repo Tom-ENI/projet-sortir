@@ -56,7 +56,7 @@ class Sortie
     private $urlPhoto;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="sortieId")
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="sortie")
      */
     private $inscriptions;
 
@@ -188,7 +188,7 @@ class Sortie
     {
         if (!$this->inscriptions->contains($inscription)) {
             $this->inscriptions[] = $inscription;
-            $inscription->setSortieId($this);
+            $inscription->setSortie($this);
         }
 
         return $this;
@@ -198,8 +198,8 @@ class Sortie
     {
         if ($this->inscriptions->removeElement($inscription)) {
             // set the owning side to null (unless already changed)
-            if ($inscription->getSortieId() === $this) {
-                $inscription->setSortieId(null);
+            if ($inscription->getSortie() === $this) {
+                $inscription->setSortie(null);
             }
         }
 

@@ -51,12 +51,12 @@ class Inscription
         return $this;
     }
 
-    public function getSortieId(): ?Sortie
+    public function getSortie(): ?Sortie
     {
         return $this->sortie;
     }
 
-    public function setSortieId(?Sortie $sortie): self
+    public function setSortie(?Sortie $sortie): self
     {
         $this->sortie = $sortie;
 
