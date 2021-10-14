@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Hello AfficherSortiController!
+{% endblock %}
+
 {% block body %}
+
+
 	<div class="container-fluid">
 		<div class="row">
 			<h4 class="offset-10 col-2">Date du jour :
-				{{"now"|date("d/m/Y")}}
+				{{date | date('d-m-Y')}}
 			</div>
 			<div class="row">
 				<h4 class="offset-10 col-2">Participant :
@@ -20,9 +25,9 @@
 							<div class="row">
 								<div class="col-3">Site :
 								</div>
-								<select class="offset-1 col-8">
+								<select name="site" class="offset-1 col-8">
 									{% for site in sites %}
-										<option>{{site.nomsite}}</option>
+										<option value="{{site.noSite}}">{{site.nomsite}}</option>
 									{% endfor %}
 								</select>
 							</div>
@@ -34,11 +39,11 @@
 								<div class="col-4">
 									Entre
 								</div>
-								<input type="text" class="col-3"/>
+								<input type="text" class="col-3" name="date1"/>
 								<div class="col-2 text-center">
 									et
 								</div>
-								<input type="text" class="col-3"/>
+								<input type="text" class="col-3" name="date2"/>
 							</div>
 						</div>
 						<div class="col-3">
@@ -149,4 +154,5 @@
 			<input type="submit" value="Créer une sortie" class="col-1"/>
 		</div>
 	</div>
+
 {% endblock %}
