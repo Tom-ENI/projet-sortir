@@ -26,13 +26,13 @@ class Inscription
     /**
      * @ORM\ManyToOne(targetEntity=Sortie::class, inversedBy="inscriptions")
      */
-    private $sortieId;
+    private $sortie;
 
     /**
      * @ORM\ManyToOne(targetEntity=participant::class, inversedBy="inscriptions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $participantId;
+    private $participant;
 
     public function getId(): ?int
     {
@@ -53,24 +53,24 @@ class Inscription
 
     public function getSortieId(): ?Sortie
     {
-        return $this->sortieId;
+        return $this->sortie;
     }
 
-    public function setSortieId(?Sortie $sortieId): self
+    public function setSortieId(?Sortie $sortie): self
     {
-        $this->sortieId = $sortieId;
+        $this->sortie = $sortie;
 
         return $this;
     }
 
-    public function getParticipantId(): ?participant
+    public function getParticipant(): ?participant
     {
-        return $this->participantId;
+        return $this->participant;
     }
 
-    public function setParticipantId(?participant $participantId): self
+    public function setParticipantId(?participant $participant): self
     {
-        $this->participantId = $participantId;
+        $this->participant = $participant;
 
         return $this;
     }
