@@ -35,19 +35,19 @@ class AfficherSortiController extends AbstractController
     {
         $nom = $request->request->get('nom');
 
-        if($request->isMethod('POST')){
-            $sorties = $sr->findByNom($nom);    
+        if ($request->isMethod('POST')) {
+            $sorties = $sr->findByNom($nom);
         } else {
             $sorties = $this->getDoctrine()
-            ->getRepository(Sorties::class)
-            ->findAll();
+                ->getRepository(Sorties::class)
+                ->findAll();
         }
 
         $participant = $this->getDoctrine()
             ->getRepository(Participants::class)
             ->find($this->getUser()->getNoParticipant());
 
-        
+
         $sites = $this->getDoctrine()
             ->getRepository(Sites::class)
             ->findAll();
