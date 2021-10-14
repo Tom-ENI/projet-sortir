@@ -95,42 +95,16 @@
 				Actions
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-2">
-				Philo
-			</div>
-			<div class="col-2">
-				19/07/2018 23:45
-			</div>
-			<div class="col-1">
-				19/07/2018
-			</div>
-			<div class="col-1">
-				8/8
-			</div>
-			<div class="col-1">
-				En cours
-			</div>
-			<div class="col-1">
-				X
-			</div>
-			<div class="col-2">
-				Spinoz A.
-			</div>
-			<div class="col-2">
-				Afficher
-			</div>
-		</div>
 		{% for sortie in sorties %}
 			<div class="row">
 				<div class="col-2">
 					{{sortie.nom}}
 				</div>
 				<div class="col-2">
-					{{sortie.datedebut | date('d-m-Y')}}
+					{{sortie.datedebut | date('d/m/Y')}}
 				</div>
 				<div class="col-1">
-					{{sortie.datecloture | date('d-m-Y')}}
+					{{sortie.datecloture | date('d/m/Y')}}
 				</div>
 				<div class="col-1">
 					8/{{sortie.nbinscriptionsmax}}
