@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ParticipantRepository::class)
+ * @ORM\Table(name="participants")
  */
 class Participant implements UserInterface, PasswordAuthenticatedUserInterface
 {
