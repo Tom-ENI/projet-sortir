@@ -114,7 +114,7 @@
 				</div>
 				<div class="col-1">
 					{% for ins in sortie.inscriptions %}
-						{% if app.user.Id == ins.getParticipants().Id  %}
+						{% if app.user.Id == ins.getParticipant().Id %}
 							X
 						{% endif %}
 					{% endfor %}
@@ -125,6 +125,11 @@
 				</div>
 				<div class="col-2">
 					Afficher
+					{% for ins in sortie.inscriptions %}
+						{% if app.user.Id == ins.getParticipant().Id %}
+							<a href="{{path('desister',{id:sortie.id})}}">Desister</a>
+						{% endif %}
+					{% endfor %}
 				</div>
 			</div>
 		{% endfor %}
