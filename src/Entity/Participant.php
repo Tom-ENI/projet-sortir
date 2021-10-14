@@ -257,7 +257,7 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->inscriptions->contains($inscription)) {
             $this->inscriptions[] = $inscription;
-            $inscription->setParticipantId($this);
+            $inscription->setParticipant($this);
         }
 
         return $this;
@@ -267,8 +267,8 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->inscriptions->removeElement($inscription)) {
             // set the owning side to null (unless already changed)
-            if ($inscription->getParticipantId() === $this) {
-                $inscription->setParticipantId(null);
+            if ($inscription->getParticipant() === $this) {
+                $inscription->setParticipant(null);
             }
         }
 

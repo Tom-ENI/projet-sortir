@@ -68,7 +68,7 @@ class Inscription
         return $this->participant;
     }
 
-    public function setParticipantId(?participant $participant): self
+    public function setParticipant(?participant $participant): self
     {
         $this->participant = $participant;
 
