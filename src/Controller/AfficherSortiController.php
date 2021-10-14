@@ -20,7 +20,7 @@ class AfficherSortiController extends AbstractController
     public function index(Request $request): Response
     {
 
-        // rediction de  Kevin 
+        // rediction de  Kévin 
         if ($this->getUser()) {
 
             return $this->redirectToRoute("afficher_sorti");
@@ -57,7 +57,7 @@ class AfficherSortiController extends AbstractController
         if ($request->isMethod('POST')) {
             $sorties = $this->getDoctrine()
                 ->getRepository(Sortie::class);
-            // à ajoute stpl 
+            // à ajouter stpl 
             //->findByNom($nom, $date1, $date2, $site);
 
             $participant = $this->getDoctrine()

@@ -77,6 +77,11 @@ class Sortie
      */
     private $site;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="sorties")
+     */
+    private $organisateur;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -233,6 +238,18 @@ class Sortie
     public function setSite(?Site $site): self
     {
         $this->site = $site;
+
+        return $this;
+    }
+
+    public function getOrganisateur(): ?Participant
+    {
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(?Participant $organisateur): self
+    {
+        $this->organisateur = $organisateur;
 
         return $this;
     }
