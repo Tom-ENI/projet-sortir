@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
-use App\Entity\Participants;
-use App\Entity\Site;
 use App\Form\RegistrationFormType;
 use App\Repository\SiteRepository;
 use Symfony\Component\HttpFoundation\Request;
