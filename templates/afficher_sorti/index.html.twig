@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<h4 class="offset-10 col-2">Date du jour :
-				{{date | date('d-m-Y')}}
+				{{"now" | date('d/m/Y')}}
 			</div>
 			<div class="row">
 				<h4 class="offset-10 col-2">Participant :
@@ -27,7 +27,7 @@
 								</div>
 								<select name="site" class="offset-1 col-8">
 									{% for site in sites %}
-										<option value="{{site.noSite}}">{{site.nomsite}}</option>
+										<option value="{{site.getId()}}">{{site.getNomSite()}}</option>
 									{% endfor %}
 								</select>
 							</div>
@@ -136,7 +136,7 @@
 					8/{{sortie.nbinscriptionsmax}}
 				</div>
 				<div class="col-1">
-					{{sortie.etatsnoetat.libelle}}
+					{{sortie.etat.getLibelle()}}
 				</div>
 				<div class="col-1">
 					X
