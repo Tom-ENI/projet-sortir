@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Lieux;
-use App\Entity\Participants;
 use App\Entity\Sites;
 use App\Entity\Sorties;
-use App\Repository\ParticipantsRepository;
+use App\Entity\Participants;
 use App\Repository\SitesRepository;
+use App\Repository\SortieRepository;
 use App\Repository\SortiesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ParticipantsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AfficherSortiController extends AbstractController
 {
@@ -31,7 +32,7 @@ class AfficherSortiController extends AbstractController
     /**
      * @Route("/sorti", name="afficher_sorti")
      */
-    public function afficher_sorti(Request $request, SortiesRepository $sr): Response
+    public function afficher_sorti(Request $request, SortieRepository $sr): Response
     {
         $nom = $request->request->get('nom');
 
