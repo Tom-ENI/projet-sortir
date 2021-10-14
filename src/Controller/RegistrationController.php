@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Participant;
 use App\Entity\Participants;
+use App\Entity\Site;
 use App\Form\RegistrationFormType;
+use App\Repository\SiteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,13 +18,21 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, SiteRepository $siteRepository): Response
     {
         $user = new Participant();
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            //activation du compte 
+            $user->setIsActif(true);
+
+            //mise en place du role automatiquement à USER
+            $user->setRoles(["ROLE_USER"]);
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(

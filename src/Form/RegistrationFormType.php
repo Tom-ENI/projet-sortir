@@ -20,19 +20,19 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('pseudo')
-            // ->add('nom')
-            // ->add('prenom')
-            // ->add('telephone', NumberType::class)
-            // ->add('mail')
-            // ->add('sites_no_site' , IntegerType::class)
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'You should agree to our terms.',
-            //         ]),
-            //     ],
-            // ])
+            ->add('nom')
+            ->add('prenom')
+            ->add('telephone', NumberType::class)
+            ->add('email')
+            ->add('site', null, ['choice_label' => 'nomSite', 'label' => '*Site'])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

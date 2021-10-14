@@ -72,6 +72,12 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $inscriptions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="participants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $site;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -264,6 +270,18 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
                 $inscription->setParticipantId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSite(): ?Site
+    {
+        return $this->site;
+    }
+
+    public function setSite(?Site $site): self
+    {
+        $this->site = $site;
 
         return $this;
     }
