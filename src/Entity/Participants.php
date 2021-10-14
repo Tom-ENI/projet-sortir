@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\ParticipantsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -83,9 +82,8 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
     private $actif;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="sites_no_site", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Sites::class)
+     * @ORM\JoinColumn(name="sites_no_site" , referencedColumnName="no_site")
      */
     private $sitesNoSite;
 
@@ -192,12 +190,12 @@ class Participants implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getSitesNoSite(): ?int
+    public function getSitesNoSite(): Sites
     {
         return $this->sitesNoSite;
     }
 
-    public function setSitesNoSite(int $sitesNoSite): self
+    public function setSitesNoSite(Sites $sitesNoSite): self
     {
         $this->sitesNoSite = $sitesNoSite;
 

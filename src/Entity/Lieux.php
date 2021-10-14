@@ -50,11 +50,10 @@ class Lieux
     private $longitude;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="villes_no_ville", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Villes::class)
+     * @ORM\JoinColumn(name="villes_no_ville" , referencedColumnName="no_ville")
      */
-    private $villesNoVille;
+    private $ville;
 
     public function getNoLieu(): ?int
     {
@@ -109,16 +108,14 @@ class Lieux
         return $this;
     }
 
-    public function getVillesNoVille(): ?int
+    public function getVille(): Villes
     {
-        return $this->villesNoVille;
+        return $this->ville;
     }
 
-    public function setVillesNoVille(int $villesNoVille): self
+    public function setVille(Villes $ville): void
     {
-        $this->villesNoVille = $villesNoVille;
-
-        return $this;
+        $this->ville = $ville;
     }
 
 

@@ -142,17 +142,23 @@ class Sorties
         return $this;
     }
 
-    public function getNbinscriptionsmax(): ?int
+    /**
+     * @return int
+     */
+    public function getNbinscriptionsmax(): int
     {
         return $this->nbinscriptionsmax;
     }
 
-    public function setNbinscriptionsmax(int $nbinscriptionsmax): self
+    /**
+     * @param int $nbinscriptionsmax
+     */
+    public function setNbinscriptionsmax(int $nbinscriptionsmax): void
     {
         $this->nbinscriptionsmax = $nbinscriptionsmax;
-
-        return $this;
     }
+
+
 
     public function getDescriptioninfos(): ?string
     {
