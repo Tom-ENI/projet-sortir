@@ -19,23 +19,18 @@ class AfficherSortiController extends AbstractController
      */
     public function index(Request $request): Response
     {
-
-        // rediction de  Kévin 
         if ($this->getUser()) {
-
             return $this->redirectToRoute("afficher_sorti");
         } else {
-
             return $this->redirectToRoute("app_login");
         }
+    }
 
-
-        // code de Ryad 
-
-        /**
-         * @Route("/sorti", name="afficher_sorti")
-         */
-
+    /**
+     * @Route("/sorti", name="afficher_sorti")
+     */
+    public function afficher_sorti(Request $request, SortieRepository $sr): Response
+    {
 
         $nom = $request->request->get('nom');
         $date1 = $request->request->get('date1');
@@ -55,52 +50,7 @@ class AfficherSortiController extends AbstractController
         $date = $this->date = new DateTime();
 
         if ($request->isMethod('POST')) {
-            $sorties = $this->getDoctrine()
-                ->getRepository(Sortie::class);
-            // à ajouter stpl 
-            //->findByNom($nom, $date1, $date2, $site);
-
-            $participant = $this->getDoctrine()
-                ->getRepository(Participant::class)
-                ->find(1);
-
-            $sites = $this->getDoctrine()
-                ->getRepository(Site::class)
-                ->findAll();
-        } else {
-
-            $participant = $this->getDoctrine()
-                ->getRepository(Participant::class)
-                ->find(1);
-
-            $sorties = $this->getDoctrine()
-                ->getRepository(Sortie::class)
-                ->findAll();
-
-            $sites = $this->getDoctrine()
-                ->getRepository(Site::class)
-                ->findAll();
-        }
-
-        return $this->render('afficher_sorti/index.html.twig', [
-            'controller_name' => 'AfficherSortiController',
-            'participant' => $participant,
-            'sorties' => $sorties,
-            'sites' => $sites,
-            'date' => $date,
-        ]);
-    }
-
-    /**
-     * @Route("/sorti", name="afficher_sorti")
-     */
-    public function afficher_sorti(Request $request, SortieRepository $sr): Response
-    {
-
-        $nom = $request->request->get('nom');
-
-        if ($request->isMethod('POST')) {
-            $sorties = $sr->findByNom($nom);
+            $sorties = $sr->findByNom($nom, $date1, $date2, $site);
         } else {
             $sorties = $this->getDoctrine()
                 ->getRepository(Sortie::class)
@@ -122,6 +72,7 @@ class AfficherSortiController extends AbstractController
             'participant' => $participant,
             'sorties' => $sorties,
             'sites' => $sites,
+            'date' => $date
         ]);
     }
 }
