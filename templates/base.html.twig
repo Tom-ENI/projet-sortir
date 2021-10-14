@@ -16,7 +16,7 @@
     </head>
     <body>
     {% if app.session.get('ParticipantId') %}
-        <h0>Sortie.com</h0><a href="{{ path('afficher_sorti') }}"><button>Accueil</button></a><button>Mon profil</button><a href="{{ path('app_logout') }}"><button>Se déconnecter</button></a>
+        <h0>Sortie.com</h0><a href="{{ path('afficher_sorti') }}"><button>Accueil</button></a><a href="{{ path('profil') }}"><button>Mon profil</button></a><a href="{{ path('app_logout') }}"><button>Se déconnecter</button></a>
         {% block body %}
         {% endblock %}
     {% elseif (app.request.attributes.get('_route') != 'app_login') and (app.request.attributes.get('_route') != 'app_register') %}
