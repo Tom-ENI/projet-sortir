@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Participants;
+use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,16 +21,16 @@ class ProfilType extends AbstractType
             ->add('prenom', TextType::class, ['label' => 'Prenom: '])
             ->add('nom', TextType::class, ['label' => 'Nom: '])
             ->add('telephone', NumberType::class, ['label' => 'Telephone: '])
-            ->add('mail', TextType::class, ['label' => 'Email: '])
-            ->add('mot_de_passe', TextType::class, ['label' => 'Mot de passe: '])
-            ->add('sites_no_site', TextType::class, ['label' => 'Ville de ratachement: '])
+            ->add('email', TextType::class, ['label' => 'Email: '])
+            //->add('password', TextType::class, ['label' => 'Mot de passe: '])
+            ->add('site', null, ['choice_label' => 'nomSite', 'label' => 'Ville de rattachement: '])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Participants::class,
+            'data_class' => Participant::class,
             'sites_no_site' => 1,
         ]);
     }

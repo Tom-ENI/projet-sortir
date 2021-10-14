@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Participant;
 use App\Form\ProfilType;
-use App\Repository\ParticipantsRepository;
+use App\Repository\ParticipantRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,39 +16,33 @@ class ProfilController extends AbstractController
     /**
      * @Route("/profil", name="profil")
      */
-    public function home(ParticipantsRepository $repo): Response
+    public function home(ParticipantRepository $repo): Response
     {
-        //get id user in session
-        $userId = 1;
-        $data = $repo->find($userId);
         return $this->render('profil/home.html.twig', [
-            'data' => $data
+            'data' => $repo->find($this->getUser()->getId())
         ]);
     }
 
     /**
-     * @Route("/profil/edit", name="edit_profil", methods={"GET","POST"})
+     * @Route("/profil/edit/{p}", name="edit_profil", methods={"GET","POST"})
      */
-    public function edit(ParticipantsRepository $repo, Request $request): Response
+    public function edit(Participant $p, Request $request, EntityManagerInterface $em): Response
     {
-        $userId = 1;
-        $data = $repo->find($userId);
-
-        $form = $this->createForm(ProfilType::class, $data);
+        $form = $this->createForm(ProfilType::class, $p);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($data);
-            $entityManager->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($p);
+            $em->flush();
 
             return $this->redirectToRoute('profil');
         }
 
         return $this->renderForm('profil/edit.html.twig', [
              'form' => $form,
-             'data' => $data,
+             'data' => $p
         ]);
     }
 }
